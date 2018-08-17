@@ -12,7 +12,7 @@
     <?php Yii::app()->bootstrap->register(); ?>
 </head>
 
-<body>
+<body style="background-color: #7aba7b">
 
 <?php $this->widget('bootstrap.widgets.TbNavbar', array(
     'collapse' => true,
@@ -21,12 +21,33 @@
             'class' => 'bootstrap.widgets.TbMenu',
             'items' => array(
                 array('label' => 'Home', 'url' => array('/site/index')),
-                array('label' => 'About', 'url' => array('/site/page', 'view' => 'about')),
-                array('label' => 'Contact', 'url' => array('/site/contact')),
-                array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
-                array('label'   => 'Logout ('.Yii::app()->user->name.')',
-                      'url'     => array('/site/logout'),
-                      'visible' => ! Yii::app()->user->isGuest,
+                array(
+                    'label' => 'Day 1 Exercises',
+                    'items' => array(
+                        array('label' => 'Practice Exercise Instruction', 'url' => array('/dayone/about')),
+                        array('label' => 'Exercise 1', 'url' => array('/dayone/number')),
+                        array('label' => 'Exercise 2', 'url' => array('/dayone/summation')),
+                        array('label' => 'Exercise 3', 'url' => array('/dayone/nestedloop')),
+                        array('label' => 'Exercise 4', 'url' => array('/dayone/factorial')),
+                        array('label' => 'Exercise 5', 'url' => array('/dayone/fizzbuzz')),
+                    ),
+                ),
+                array(
+                    'label' => 'Day 2 Exercises',
+                    'items' => array(
+                        array('label' => 'Practice Exercise Instruction', 'url' => array('/daytwo/about')),
+                        array('label' => 'Exercise 6', 'url' => array('/daytwo/bookfine')),
+                        array('label' => 'Exercise 7', 'url' => array('/daytwo/decentnumber')),
+                        array('label' => 'Exercise 8', 'url' => array('/daytwo/perfectsquare')),
+                    ),
+                ),
+                array(
+                    'label' => 'Day 3 Exercises',
+                    'items' => array(
+                        array('label' => 'Practice Exercise Instruction', 'url' => array('/daythree/about')),
+                        array('label' => 'Exercise 9', 'url' => array('/daythree/kaprekar')),
+                        array('label' => 'Exercise 10', 'url' => array('/daythree/matrix')),
+                    ),
                 ),
             ),
         ),
@@ -35,23 +56,13 @@
 
 <div class="container" id="page">
 
-    <?php if (isset($this->breadcrumbs)): ?>
-        <?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
-            'links' => $this->breadcrumbs,
-        )); ?><!-- breadcrumbs -->
-    <?php endif ?>
-
     <?php echo $content; ?>
 
     <div class="clear"></div>
 
-    <div id="footer">
-        Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-        All Rights Reserved.<br/>
-        <?php echo Yii::powered(); ?>
-    </div><!-- footer -->
-
 </div><!-- page -->
+
+<br><br>
 
 </body>
 </html>
