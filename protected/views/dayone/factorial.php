@@ -9,29 +9,29 @@ $this->pageTitle = Yii::app()->name.' - Practice Four';
         'block'     => true,
         'fade'      => true,
         'closeText' => '&times;',
-        'alerts'    => array(
-            'success' => array('block' => true, 'fade' => true, 'closeText' => '&times;'),
-        ),
+        'alerts'    => [
+            'success' => ['block' => true, 'fade' => true, 'closeText' => '&times;'],
+        ],
     )); ?>
 <?php else: ?>
 
     <?php
     $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         'id'                     => 'factorialForm',
-        'htmlOptions'            => array('class' => 'well'),
+        'htmlOptions'            => ['class' => 'well'],
         'enableClientValidation' => true,
-        'clientOptions'          => array(
+        'clientOptions'          => [
             'validateOnSubmit' => true,
-        ),
+        ],
     )); ?>
 
-    <?php echo $form->textFieldRow($factorial_model, 'base_number'); ?>
+    <?php echo $form->textFieldRow($factorialModel, 'baseNumber'); ?>
     <div class="form">
-        <?php $this->widget('bootstrap.widgets.TbButton', array(
+        <?php $this->widget('bootstrap.widgets.TbButton', [
             'buttonType' => 'submit',
             'type'       => 'primary',
             'label'      => 'Calculate',
-        )); ?>
+        ]); ?>
     </div>
 
     <?php $this->endWidget(); ?>

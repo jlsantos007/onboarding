@@ -1,6 +1,6 @@
 <?php
 
-class DaythreeController extends Controller
+class DayThreeController extends Controller
 {
 
     public function actionAbout()
@@ -21,23 +21,23 @@ class DaythreeController extends Controller
 
     public function actionKaprekar()
     {
-        $kaprekar_numbers = array();
-        $index            = 0;
+        $kaprekarNumbers = [];
+        $index           = 0;
 
-        for ($base_num = 1; $base_num < 1000; $base_num++) {
-            $square_num = pow($base_num, 2);
-            $square_str = (string)$square_num;
-            $mid        = (int)strlen($square_str) / 2;
-            $left       = (int)substr($square_str, 0, $mid);
-            $right      = (int)substr($square_str, $mid);
-            $sum        = $left + $right;
+        for ($baseNumber = 1; $baseNumber < 1000; $baseNumber++) {
+            $squareNumber   = pow($baseNumber, 2);
+            $squareToString = (string)$squareNumber;
+            $mid            = (int)strlen($squareToString) / 2;
+            $left           = (int)substr($squareToString, 0, $mid);
+            $right          = (int)substr($squareToString, $mid);
+            $sum            = $left + $right;
 
-            if ($sum == $base_num) {
-                $kaprekar_numbers[$index] = $sum;
+            if ($sum === $baseNumber) {
+                $kaprekarNumbers[$index] = $sum;
                 $index++;
             }
         }
-        $this->render('kaprekar', array('kaprekar_numbers' => $kaprekar_numbers));
+        $this->render('kaprekar', compact('kaprekarNumbers'));
     }
 
     public function actionMatrix()

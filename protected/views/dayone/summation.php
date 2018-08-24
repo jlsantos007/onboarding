@@ -6,5 +6,5 @@ $this->pageTitle = Yii::app()->name.' - Practice Two';
 
 <div class="container" align="center">
     <label>Sum of numbers between 0-30 is:</label>
-    <input type="text" value="<?php echo $sum; ?>" disabled>
+    <input type="text" value="<?php echo $displaySum; ?>" disabled>
 </div>

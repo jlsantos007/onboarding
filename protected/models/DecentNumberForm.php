@@ -2,13 +2,13 @@
 
 class DecentNumberForm extends CFormModel
 {
-    public $key_number;
+    public $keyNumber;
 
     public function rules()
     {
-        return array(
-            array('key_number', 'numerical', 'integerOnly' => true),
-            array('key_number', 'required'),
-        );
+        return [
+            ['keyNumber', 'numerical', 'integerOnly' => true],
+            ['keyNumber', 'required'],
+        ];
     }
 }

@@ -21,53 +21,55 @@ class DayOneController extends Controller
 
     public function actionNumber()
     {
-        $count_print = array();
+        $displayCount = [];
+        $maxCount     = 10;
 
-        for ($count = 1; $count <= 10; $count++) {
+        for ($count = 1; $count <= $maxCount; $count++) {
             if ($count <= 9) {
-                $count_print[$count - 1] = $count." - ";
+                $displayCount[$count - 1] = $count.' - ';
             } else {
-                $count_print[$count - 1] = $count;
+                $displayCount[$count - 1] = $count;
             }
         }
 
-        $this->render('number', array('count_print' => $count_print));
+        $this->render('number', compact('displayCount'));
     }
 
     public function actionSummation()
     {
-        $sum = 0;
+        $displaySum = 0;
 
         for ($count = 1; $count < 30; $count++) {
-            $sum += $count;
+            $displaySum += $count;
         }
-        $this->render('summation', array('sum' => $sum));
+        $this->render('summation', compact('displaySum'));
     }
 
     public function actionNestedLoop()
     {
-        $right_triangle = array();
+        $rightTriangle = [];
+        $maxRow        = 5;
 
-        for ($row = 1; $row <= 5; $row++) {
+        for ($row = 1; $row <= $maxRow; $row++) {
             for ($column = 0; $column < $row; $column++) {
-                $right_triangle[$row - 1][$column] = "* ";
+                $rightTriangle[$row - 1][$column] = "* ";
             }
         }
-        $this->render('nestedloop', array('right_triangle' => $right_triangle));
+        $this->render('nestedloop', compact('rightTriangle'));
     }
 
     public function actionFactorial()
     {
-        $factorial_model = new FactorialForm;
-        $start_number    = 1;
-        $factorial       = 0;
+        $factorialModel = new FactorialForm;
+        $startNumber    = 1;
+        $factorial      = 0;
 
         if (isset($_POST['FactorialForm'])) {
             $base_number = implode($_POST['FactorialForm']);
 
             for ($counter = 1; $counter < $base_number; $base_number--) {
-                $factorial    = (int)$start_number * (int)$base_number;
-                $start_number = (int)$factorial;
+                $factorial   = $startNumber * (int)$base_number;
+                $startNumber = $factorial;
             }
 
             Yii::app()->user->setFlash('success',
@@ -75,24 +77,25 @@ class DayOneController extends Controller
             $this->refresh();
         }
 
-        $this->render('factorial', array('factorial_model' => $factorial_model));
+        $this->render('factorial', compact('factorialModel'));
     }
 
     public function actionFizzBuzz()
     {
-        $fizz_buzz = array();
+        $fizzBuzz       = [];
+        $maxRangeNumber = 1000;
 
-        for ($counter = 1; $counter <= 1000; $counter++) {
+        for ($counter = 1; $counter <= $maxRangeNumber; $counter++) {
             if ($counter % 3 === 0 && $counter % 5 === 0) {
-                $fizz_buzz[$counter - 1] = 'FizzBuzz';
+                $fizzBuzz[$counter - 1] = 'FizzBuzz';
             } elseif ($counter % 3 === 0) {
-                $fizz_buzz[$counter - 1] = 'Fizz';
+                $fizzBuzz[$counter - 1] = 'Fizz';
             } elseif ($counter % 5 === 0) {
-                $fizz_buzz[$counter - 1] = 'Buzz';
+                $fizzBuzz[$counter - 1] = 'Buzz';
             } else {
-                $fizz_buzz[$counter - 1] = $counter;
+                $fizzBuzz[$counter - 1] = $counter;
             }
         }
-        $this->render('fizzbuzz', array('fizz_buzz' => $fizz_buzz));
+        $this->render('fizzbuzz', compact('fizzBuzz'));
     }
 }

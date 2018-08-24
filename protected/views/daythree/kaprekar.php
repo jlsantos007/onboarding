@@ -11,7 +11,7 @@ $this->pageTitle = Yii::app()->name.' - Practice Nine';
     <div class="row">
         <select multiple class="multiple">
             <?php
-            foreach ($kaprekar_numbers as $kaprekar) {
+            foreach ($kaprekarNumbers as $kaprekar) {
                 echo '<option>'.$kaprekar.'</option>';
             }
             ?>

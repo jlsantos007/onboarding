@@ -9,7 +9,7 @@ $this->pageTitle = Yii::app()->name.' - Practice Five';
     <br>
     <select multiple class="form-control">
         <?php
-        foreach ($fizz_buzz as $fb) {
+        foreach ($fizzBuzz as $fb) {
             echo '<option>"'.($fb).'"</option>';
         }
         ?>
