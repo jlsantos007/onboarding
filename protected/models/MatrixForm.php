@@ -2,16 +2,16 @@
 
 class MatrixForm extends CFormModel
 {
-    public $row_length;
-    public $column_length;
+    public $rowLength;
+    public $columnLength;
     public $rotation;
 
     public function rules()
     {
         return array(
-            array('row_length, column_length, rotation', 'numerical', 'integerOnly' => true),
-            array('row_length column_length', 'numerical', 'min' => 3, 'max' => 10),
-            array('row_length, column_length, rotation', 'required'),
+            array('rowLength, columnLength, rotation', 'numerical', 'integerOnly' => true),
+            array('rowLength, columnLength', 'numerical', 'min' => 3, 'max' => 10),
+            array('rowLength, columnLength, rotation', 'required'),
         );
     }
 }
