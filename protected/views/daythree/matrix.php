@@ -6,7 +6,7 @@ $this->pageTitle = Yii::app()->name.' - Practice Ten';
 
 <?php
 $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
-    'id'                     => 'decentNumberForm',
+    'id'                     => 'matrixForm',
     'htmlOptions'            => array('class' => 'well'),
     'enableClientValidation' => true,
     'clientOptions'          => array(
@@ -14,9 +14,9 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     ),
 )); ?>
 
-<?php echo $form->textFieldRow($matrix_model, 'row_length'); ?>
-<?php echo $form->textFieldRow($matrix_model, 'column_length'); ?>
-<?php echo $form->textFieldRow($matrix_model, 'rotation'); ?>
+<?php echo $form->textFieldRow($matrixModel, 'rowLength'); ?>
+<?php echo $form->textFieldRow($matrixModel, 'columnLength'); ?>
+<?php echo $form->textFieldRow($matrixModel, 'rotation'); ?>
 
     <div class="form">
         <?php $this->widget('bootstrap.widgets.TbButton', array(
