@@ -3,6 +3,8 @@
 class DayThreeController extends Controller
 {
 
+    const DEFAULT_VALUE = 0;
+
     public function actionAbout()
     {
         $this->render('about');
@@ -21,16 +23,15 @@ class DayThreeController extends Controller
 
     public function actionKaprekar()
     {
-        $kaprekarNumbers = [];
-        $index           = 0;
+        $index = self::DEFAULT_VALUE;
 
         for ($baseNumber = 1; $baseNumber < 1000; $baseNumber++) {
-            $squareNumber   = pow($baseNumber, 2);
+            $squareNumber = pow($baseNumber, 2);
             $squareToString = (string)$squareNumber;
-            $mid            = (int)strlen($squareToString) / 2;
-            $left           = (int)substr($squareToString, 0, $mid);
-            $right          = (int)substr($squareToString, $mid);
-            $sum            = $left + $right;
+            $mid = (int)strlen($squareToString) / 2;
+            $left = (int)substr($squareToString, 0, $mid);
+            $right = (int)substr($squareToString, $mid);
+            $sum = $left + $right;
 
             if ($sum === $baseNumber) {
                 $kaprekarNumbers[$index] = $sum;
@@ -46,20 +47,19 @@ class DayThreeController extends Controller
 
         if (isset($_POST['MatrixForm'])) {
             $matrixModel->attributes = $_POST['MatrixForm'];
-            $rowLength               = $matrixModel->rowLength;
-            $columnLength            = $matrixModel->columnLength;
-            $rotation                = $matrixModel->rotation;
-            $matrix                  = array();
-            $count                   = 0;
+            $rowLength = $matrixModel->rowLength;
+            $columnLength = $matrixModel->columnLength;
+            $rotation = $matrixModel->rotation;
+            $count = self::DEFAULT_VALUE;
 
             for ($row = 0; $row < $rowLength; ++$row) {
                 for ($column = 0; $column < $columnLength; ++$column) {
-                    $count                 += 1;
-                    $matrix[$row][$column] = "<td>".$count."</td>";
+                    $count += 1;
+                    $matrix[$row][$column] = '<td>'.$count.'</td>';
                 }
             }
             $rotatedMatrix = $this->actionCounterClockwise($columnLength, $matrix, $rowLength, $rotation);
-            $newMatrix     = $this->actionPrintMatrix($rotatedMatrix);
+            $newMatrix = $this->actionPrintMatrix($rotatedMatrix);
 
             $this->render('matrixtable', array('matrix' => $matrix, 'newMatrix' => $newMatrix));
         } else {
@@ -69,11 +69,11 @@ class DayThreeController extends Controller
 
     public function actionCounterClockwise($columnLength, $matrix, $rowLength, $timesRotation)
     {
-        $startRow    = 0;
-        $startColumn = 0;
+        $startRow = self::DEFAULT_VALUE;
+        $startColumn = self::DEFAULT_VALUE;
 
         while ($rowLength > 1 && $columnLength > 1) {
-            $matrixLength   = ((2 * $rowLength) + (2 * $columnLength)) - 4;
+            $matrixLength = ((2 * $rowLength) + (2 * $columnLength)) - 4;
             $actualRotation = $timesRotation % $matrixLength;
 
             for ($rotation = 0; $rotation < $actualRotation; $rotation++) {
@@ -91,7 +91,7 @@ class DayThreeController extends Controller
             $startRow++;
             $startColumn++;
 
-            $rowLength    -= 2;
+            $rowLength -= 2;
             $columnLength -= 2;
         }
 

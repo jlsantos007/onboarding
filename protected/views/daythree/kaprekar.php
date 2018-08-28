@@ -6,7 +6,7 @@ $this->pageTitle = Yii::app()->name.' - Practice Nine';
 
 <div class="container" align="center">
     <div class="row">
-        <label>List of Kaprekar Numbers ranging 1-1000:</label>
+        List of Kaprekar Numbers ranging 1-1000:
     </div>
     <div class="row">
         <select multiple class="multiple">

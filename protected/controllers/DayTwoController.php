@@ -3,6 +3,20 @@
 class DayTwoController extends Controller
 {
 
+    const EXPECTED_YEAR = 2015;
+    const EXPECTED_MONTH = 9;
+    const EXPECTED_DAY = 25;
+    const RETURNED_YEAR = 2015;
+    const RETURNED_MONTH = 9;
+    const RETURNED_DAY = 29;
+    const FINE_LATE_DAYS = 15;
+    const FINE_LATE_MONTHS = 500;
+    const DECIMAL_PLACES = 2;
+    const MAX_BASE_NUMBER = 10000;
+    const DISPLAY_OF_3S = '3';
+    const DISPLAY_OF_5S = '5';
+    const START_COUNT = 0;
+
     public function actionAbout()
     {
         $this->render('about');
@@ -21,15 +35,15 @@ class DayTwoController extends Controller
 
     public function actionBookFine()
     {
-        $expectedYear   = 2015;
-        $expectedMonth  = 9;
-        $expectedDay    = 25;
-        $returnedYear   = 2015;
-        $returnedMonth  = 9;
-        $returnedDay    = 29;
-        $fineLateDays   = 15;
-        $fineLateMonths = 500;
-        $decimalPlaces  = 2;
+        $expectedYear = self::EXPECTED_YEAR;
+        $expectedMonth = self::EXPECTED_MONTH;
+        $expectedDay = self::EXPECTED_DAY;
+        $returnedYear = self::RETURNED_YEAR;
+        $returnedMonth = self::RETURNED_MONTH;
+        $returnedDay = self::RETURNED_DAY;
+        $fineLateDays = self::FINE_LATE_DAYS;
+        $fineLateMonths = self::FINE_LATE_MONTHS;
+        $decimalPlaces = self::DECIMAL_PLACES;
 
         if ($returnedDay >= $expectedDay && $returnedMonth === $expectedMonth && $returnedYear === $expectedYear) {
             $bookFine = abs($expectedDay - $returnedDay) * $fineLateDays;
@@ -41,14 +55,14 @@ class DayTwoController extends Controller
             $bookFine = 0;
         }
 
-        $bookFine    = number_format($bookFine, $decimalPlaces, '.', ',');
+        $bookFine = number_format($bookFine, $decimalPlaces, '.', ',');
         $displayFine = new CArrayDataProvider([
             [
-                'id'                       => 1,
-                'bookTitle'                => 'Book 1',
+                'id' => 1,
+                'bookTitle' => 'Book 1',
                 'bookExpectedReturnedDate' => '9-25-2015',
-                'bookReturnedDate'         => '9-29-2015',
-                'bookFine'                 => $bookFine,
+                'bookReturnedDate' => '9-29-2015',
+                'bookFine' => $bookFine,
             ],
         ]);
         $this->render('bookfine', compact('displayFine'));
@@ -57,9 +71,6 @@ class DayTwoController extends Controller
     public function actionDecentNumber()
     {
         $decentNumberModel = new DecentNumberForm;
-        $display3s         = '3';
-        $display5s         = '5';
-        $multiplier        = 0;
 
         if (isset($_POST['DecentNumberForm'])) {
             $keyNumber = implode($_POST['DecentNumberForm']);
@@ -77,8 +88,8 @@ class DayTwoController extends Controller
             }
 
             if (5 * $multiplier <= $keyNumber) {
-                $decentNumber = str_repeat($display5s, (int)$keyNumber - 5 * (int)$multiplier).
-                    str_repeat($display3s, 5 * (int)$multiplier);
+                $decentNumber = str_repeat(self::DISPLAY_OF_5S, (int)$keyNumber - 5 * (int)$multiplier).
+                    str_repeat(self::DISPLAY_OF_3S, 5 * (int)$multiplier);
             } else {
                 $decentNumber = '-1';
             }
@@ -92,13 +103,11 @@ class DayTwoController extends Controller
 
     public function actionPerfectSquare()
     {
-        $squareCount   = 0;
-        $maxBaseNumber = 10000;
-        $squareRoot    = [];
+        $squareCount = self::START_COUNT;
 
-        for ($baseNumber = 10; $baseNumber <= $maxBaseNumber; $baseNumber++) {
-            $squareNumber   = sqrt($baseNumber);
-            $roundNumber    = floor($squareNumber);
+        for ($baseNumber = 10; $baseNumber <= self::MAX_BASE_NUMBER; $baseNumber++) {
+            $squareNumber = sqrt($baseNumber);
+            $roundNumber = floor($squareNumber);
             $perfect_square = $squareNumber - $roundNumber;
 
             if ($perfect_square == 0) {

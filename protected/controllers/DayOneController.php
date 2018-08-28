@@ -3,6 +3,12 @@
 class DayOneController extends Controller
 {
 
+    const MAX_COUNT = 10;
+    const MAX_ROW = 5;
+    const MAX_RANGE_NUMBER = 1000;
+    const BASE_NUMBER = 0;
+    const START_NUMBER = 1;
+
     public function actionAbout()
     {
         $this->render('about');
@@ -21,23 +27,15 @@ class DayOneController extends Controller
 
     public function actionNumber()
     {
-        $displayCount = [];
-        $maxCount     = 10;
-
-        for ($count = 1; $count <= $maxCount; $count++) {
-            if ($count <= 9) {
-                $displayCount[$count - 1] = $count.' - ';
-            } else {
-                $displayCount[$count - 1] = $count;
-            }
+        for ($count = 1; $count <= self::MAX_COUNT; $count++) {
+            $displayCount[$count - 1] = $count <= 9 ? $count.' - ' : $count;
         }
-
         $this->render('number', compact('displayCount'));
     }
 
     public function actionSummation()
     {
-        $displaySum = 0;
+        $displaySum = self::BASE_NUMBER;
 
         for ($count = 1; $count < 30; $count++) {
             $displaySum += $count;
@@ -47,12 +45,9 @@ class DayOneController extends Controller
 
     public function actionNestedLoop()
     {
-        $rightTriangle = [];
-        $maxRow        = 5;
-
-        for ($row = 1; $row <= $maxRow; $row++) {
+        for ($row = 1; $row <= self::MAX_ROW; $row++) {
             for ($column = 0; $column < $row; $column++) {
-                $rightTriangle[$row - 1][$column] = "* ";
+                $rightTriangle[$row - 1][$column] = '* ';
             }
         }
         $this->render('nestedloop', compact('rightTriangle'));
@@ -61,14 +56,14 @@ class DayOneController extends Controller
     public function actionFactorial()
     {
         $factorialModel = new FactorialForm;
-        $startNumber    = 1;
-        $factorial      = 0;
+        $startNumber = self::START_NUMBER;
+        $factorial = self::BASE_NUMBER;
 
         if (isset($_POST['FactorialForm'])) {
-            $base_number = implode($_POST['FactorialForm']);
+            $baseNumber = implode($_POST['FactorialForm']);
 
-            for ($counter = 1; $counter < $base_number; $base_number--) {
-                $factorial   = $startNumber * (int)$base_number;
+            for ($counter = 1; $counter < $baseNumber; $baseNumber--) {
+                $factorial = $startNumber * (int)$baseNumber;
                 $startNumber = $factorial;
             }
 
@@ -82,10 +77,7 @@ class DayOneController extends Controller
 
     public function actionFizzBuzz()
     {
-        $fizzBuzz       = [];
-        $maxRangeNumber = 1000;
-
-        for ($counter = 1; $counter <= $maxRangeNumber; $counter++) {
+        for ($counter = 1; $counter <= self::MAX_RANGE_NUMBER; $counter++) {
             if ($counter % 3 === 0 && $counter % 5 === 0) {
                 $fizzBuzz[$counter - 1] = 'FizzBuzz';
             } elseif ($counter % 3 === 0) {

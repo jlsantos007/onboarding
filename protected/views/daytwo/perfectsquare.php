@@ -8,14 +8,14 @@ $this->pageTitle = Yii::app()->name.' - Practice Eight';
 
 <div class="container" align="center">
     <div class="row">
-        <label>Integer Range:</label>
+        Integer Range:
     </div>
     <div class="row">
         <input type="text" value="10-10000" disabled>
     </div>
     <br>
     <div class="row">
-        <label>Perfect Squares:</label>
+        Perfect Squares:
     </div>
     <div class="row">
         <select multiple class="multiple">
@@ -28,7 +28,7 @@ $this->pageTitle = Yii::app()->name.' - Practice Eight';
     </div>
     <br>
     <div class="row">
-        <label>Number of Perfect Squares:</label>
+        Number of Perfect Squares:
     </div>
     <div class="row">
         <input type="text" value="<?php echo $squareCount; ?>" disabled>
