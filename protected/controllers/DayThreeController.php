@@ -1,7 +1,9 @@
 <?php
 
-class DaythreeController extends Controller
+class DayThreeController extends Controller
 {
+
+    const DEFAULT_VALUE = 0;
 
     public function actionAbout()
     {
@@ -21,89 +23,114 @@ class DaythreeController extends Controller
 
     public function actionKaprekar()
     {
-        $kaprekar_numbers = array();
-        $index            = 0;
+        $index = self::DEFAULT_VALUE;
 
-        for ($base_num = 1; $base_num < 1000; $base_num++) {
-            $square_num = pow($base_num, 2);
-            $square_str = (string)$square_num;
-            $mid        = (int)strlen($square_str) / 2;
-            $left       = (int)substr($square_str, 0, $mid);
-            $right      = (int)substr($square_str, $mid);
-            $sum        = $left + $right;
+        for ($baseNumber = 1; $baseNumber < 1000; $baseNumber++) {
+            $squareNumber = pow($baseNumber, 2);
+            $squareToString = (string)$squareNumber;
+            $mid = (int)strlen($squareToString) / 2;
+            $left = (int)substr($squareToString, 0, $mid);
+            $right = (int)substr($squareToString, $mid);
+            $sum = $left + $right;
 
-            if ($sum == $base_num) {
-                $kaprekar_numbers[$index] = $sum;
+            if ($sum === $baseNumber) {
+                $kaprekarNumbers[$index] = $sum;
                 $index++;
             }
         }
-        $this->render('kaprekar', array('kaprekar_numbers' => $kaprekar_numbers));
+        $this->render('kaprekar', compact('kaprekarNumbers'));
     }
 
     public function actionMatrix()
     {
-        $matrix_model = new MatrixForm;
+        $matrixModel = new MatrixForm;
 
         if (isset($_POST['MatrixForm'])) {
-            $matrix_model->attributes = $_POST['MatrixForm'];
-            $row_length               = $matrix_model->row_length;
-            $column_length            = $matrix_model->column_length;
-            $rotation                 = $matrix_model->rotation;
-            $matrix                   = array();
-            $count                    = 0;
+            $matrixModel->attributes = $_POST['MatrixForm'];
+            $rowLength = $matrixModel->rowLength;
+            $columnLength = $matrixModel->columnLength;
+            $rotation = $matrixModel->rotation;
+            $count = self::DEFAULT_VALUE;
 
-            for ($row = 0; $row < $row_length; ++$row) {
-                for ($column = 0; $column < $column_length; ++$column) {
-                    $count                 += 1;
-                    $matrix[$row][$column] = "<td>".$count."</td>";
+            for ($row = 0; $row < $rowLength; ++$row) {
+                for ($column = 0; $column < $columnLength; ++$column) {
+                    $count += 1;
+                    $matrix[$row][$column] = '<td>'.$count.'</td>';
                 }
             }
-            $rotated_matrix = $this->actionCounterClockwise($column_length, $matrix, $row_length, $rotation);
-            $new_matrix     = $this->actionPrintMatrix($rotated_matrix);
+            $rotatedMatrix = $this->actionCounterClockwise($columnLength, $matrix, $rowLength, $rotation);
+            $newMatrix = $this->actionPrintMatrix($rotatedMatrix);
 
-            $this->render('matrixtable', array('matrix' => $matrix, 'new_matrix' => $new_matrix));
+            $this->render('matrixtable', array('matrix' => $matrix, 'newMatrix' => $newMatrix));
         } else {
-            $this->render('matrix', array('matrix_model' => $matrix_model));
+            $this->render('matrix', array('matrixModel' => $matrixModel));
         }
     }
 
-    public function actionCounterClockwise($column_length, $matrix, $row_length, $times_rotation)
+    public function actionCounterClockwise($columnLength, $matrix, $rowLength, $timesRotation)
     {
-        $start_row    = 0;
-        $start_column = 0;
+        $startRow = self::DEFAULT_VALUE;
+        $startColumn = self::DEFAULT_VALUE;
 
-        while ($row_length > 1 && $column_length > 1) {
-            $matrix_length   = ((2 * $row_length) + (2 * $column_length)) - 4;
-            $actual_rotation = $times_rotation % $matrix_length;
+        while ($rowLength > 1 && $columnLength > 1) {
+            $matrixLength = ((2 * $rowLength) + (2 * $columnLength)) - 4;
+            $actualRotation = $timesRotation % $matrixLength;
 
-            for ($rotation = 0; $rotation < $actual_rotation; $rotation++) {
-                $left_top_corner = $matrix[$start_row][$start_column];
+            for ($rotation = 0; $rotation < $actualRotation; $rotation++) {
+                $leftTopCorner = $matrix[$startRow][$startColumn];
 
-                for ($column_index = $start_column; $column_index < $start_column + $column_length - 1; $column_index++) {
-                    $matrix[$start_row][$column_index] = $matrix[$start_row][$column_index + 1];
-                }
+                $matrix = $this->actionRotateFirstColumn($columnLength, $matrix, $startColumn,
+                    $startRow);
+                $matrix = $this->actionRotateFirstRow($columnLength, $matrix, $rowLength, $startColumn,
+                    $startRow);
+                $matrix = $this->actionRotateLastColumn($columnLength, $matrix, $rowLength, $startRow, $startColumn);
+                $matrix = $this->actionRotateLastRow($matrix, $rowLength, $startRow, $startColumn);
 
-                $last_column = $start_column + $column_length - 1;
-                for ($row_index = $start_row; $row_index < $start_row + $row_length - 1; $row_index++) {
-                    $matrix[$row_index][$last_column] = $matrix[$row_index + 1][$last_column];
-                }
-
-                $last_row = $start_row + $row_length - 1;
-                for ($column_index = $start_column + $column_length - 1; $column_index >= $start_column + 1; $column_index--) {
-                    $matrix[$last_row][$column_index] = $matrix[$last_row][$column_index - 1];
-                }
-
-                for ($row_index = $start_row + $row_length - 1; $row_index >= 1 + $start_row; $row_index--) {
-                    $matrix[$row_index][$start_column] = $matrix[$row_index - 1][$start_column];
-                }
-
-                $matrix[$start_row + 1][$start_column] = $left_top_corner;
+                $matrix[$startRow + 1][$startColumn] = $leftTopCorner;
             }
-            $start_row++;
-            $start_column++;
+            $startRow++;
+            $startColumn++;
 
-            $row_length    -= 2;
-            $column_length -= 2;
+            $rowLength -= 2;
+            $columnLength -= 2;
+        }
+
+        return $matrix;
+    }
+
+    public function actionRotateFirstColumn($columnLength, $matrix, $startColumn, $startRow)
+    {
+        for ($columnIndex = $startColumn; $columnIndex < $startColumn + $columnLength - 1; $columnIndex++) {
+            $matrix[$startRow][$columnIndex] = $matrix[$startRow][$columnIndex + 1];
+        }
+
+        return $matrix;
+    }
+
+    public function actionRotateFirstRow($columnLength, $matrix, $rowLength, $startColumn, $startRow)
+    {
+        $lastColumn = $startColumn + $columnLength - 1;
+        for ($rowIndex = $startRow; $rowIndex < $startRow + $rowLength - 1; $rowIndex++) {
+            $matrix[$rowIndex][$lastColumn] = $matrix[$rowIndex + 1][$lastColumn];
+        }
+
+        return $matrix;
+    }
+
+    public function actionRotateLastColumn($columnLength, $matrix, $rowLength, $startRow, $startColumn)
+    {
+        $lastRow = $startRow + $rowLength - 1;
+        for ($columnIndex = $startColumn + $columnLength - 1; $columnIndex >= $startColumn + 1; $columnIndex--) {
+            $matrix[$lastRow][$columnIndex] = $matrix[$lastRow][$columnIndex - 1];
+        }
+
+        return $matrix;
+    }
+
+    public function actionRotateLastRow($matrix, $rowLength, $startRow, $startColumn)
+    {
+        for ($rowIndex = $startRow + $rowLength - 1; $rowIndex >= 1 + $startRow; $rowIndex--) {
+            $matrix[$rowIndex][$startColumn] = $matrix[$rowIndex - 1][$startColumn];
         }
 
         return $matrix;
@@ -111,10 +138,10 @@ class DaythreeController extends Controller
 
     public function actionPrintMatrix($matrix)
     {
-        $matrix_size = count($matrix);
+        $matrixSize = count($matrix);
 
-        for ($row = 0; $row < $matrix_size; ++$row) {
-            for ($column = 0; $column < $matrix_size; ++$column) {
+        for ($row = 0; $row < $matrixSize; ++$row) {
+            for ($column = 0; $column < $matrixSize; ++$column) {
                 '<td>'.$matrix[$row][$column].'</td>';
             }
         }

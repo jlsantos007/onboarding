@@ -7,7 +7,7 @@ $this->pageTitle = Yii::app()->name.' - Practice Three';
 <div class="container">
     <h3>
         <?php
-        foreach ($right_triangle as $triangle) {
+        foreach ($rightTriangle as $triangle) {
             echo implode($triangle);
             echo "<br>";
         }

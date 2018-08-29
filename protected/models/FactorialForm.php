@@ -2,13 +2,13 @@
 
 class FactorialForm extends CFormModel
 {
-    public $base_number;
+    public $baseNumber;
 
     public function rules()
     {
-        return array(
-            array('base_number', 'numerical', 'integerOnly' => true),
-            array('base_number', 'required'),
-        );
+        return [
+            ['baseNumber', 'numerical', 'integerOnly' => true],
+            ['baseNumber', 'required'],
+        ];
     }
 }

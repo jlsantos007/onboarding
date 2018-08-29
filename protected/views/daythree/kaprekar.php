@@ -6,12 +6,12 @@ $this->pageTitle = Yii::app()->name.' - Practice Nine';
 
 <div class="container" align="center">
     <div class="row">
-        <label>List of Kaprekar Numbers ranging 1-1000:</label>
+        List of Kaprekar Numbers ranging 1-1000:
     </div>
     <div class="row">
         <select multiple class="multiple">
             <?php
-            foreach ($kaprekar_numbers as $kaprekar) {
+            foreach ($kaprekarNumbers as $kaprekar) {
                 echo '<option>'.$kaprekar.'</option>';
             }
             ?>

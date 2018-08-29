@@ -7,5 +7,5 @@ $this->pageTitle = Yii::app()->name.' - Practice One';
 <br>
 
 <div class="container" align="center">
-    <input type="text" value="<?php echo implode($count_print); ?>" disabled>
+    <input type="text" value="<?php echo implode($displayCount); ?>" disabled>
 </div>

@@ -2,9 +2,9 @@
 $this->pageTitle = Yii::app()->name.' - Day 3';
 ?>
 
-<?php $this->beginWidget('bootstrap.widgets.TbHeroUnit', array(
+<?php $this->beginWidget('bootstrap.widgets.TbHeroUnit', [
     'heading' => 'Day 3 Onboarding Exercises',
-)); ?>
+]); ?>
 
 <?php $this->endWidget(); ?>
 

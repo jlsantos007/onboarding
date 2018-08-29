@@ -1,6 +1,6 @@
 <?php
 
-$this->pageTitle   = Yii::app()->name.' - Practice Eight';
+$this->pageTitle = Yii::app()->name.' - Practice Eight';
 
 ?>
 
@@ -8,19 +8,19 @@ $this->pageTitle   = Yii::app()->name.' - Practice Eight';
 
 <div class="container" align="center">
     <div class="row">
-        <label>Integer Range:</label>
+        Integer Range:
     </div>
     <div class="row">
         <input type="text" value="10-10000" disabled>
     </div>
     <br>
     <div class="row">
-        <label>Perfect Squares:</label>
+        Perfect Squares:
     </div>
     <div class="row">
         <select multiple class="multiple">
             <?php
-            foreach ($square_root as $sr) {
+            foreach ($squareRoot as $sr) {
                 echo '<option>'.$sr.'</option>';
             }
             ?>
@@ -28,9 +28,9 @@ $this->pageTitle   = Yii::app()->name.' - Practice Eight';
     </div>
     <br>
     <div class="row">
-        <label>Number of Perfect Squares:</label>
+        Number of Perfect Squares:
     </div>
     <div class="row">
-        <input type="text" value="<?php echo $square_count; ?>" disabled>
+        <input type="text" value="<?php echo $squareCount; ?>" disabled>
     </div>
 </div>

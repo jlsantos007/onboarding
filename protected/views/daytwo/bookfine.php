@@ -7,16 +7,16 @@ $this->pageTitle = Yii::app()->name.' - Practice 6';
 <br>
 
 <?php
-$this->widget('bootstrap.widgets.TbGridView', array(
+$this->widget('bootstrap.widgets.TbGridView', [
     'type'         => 'bordered',
-    'dataProvider' => $gridDataProvider,
-    'template'     => "{items}",
-    'columns'      => array(
-        array('name' => 'id', 'header' => 'Book No.'),
-        array('name' => 'bookTitle', 'header' => 'Book Title'),
-        array('name' => 'bookExpectedReturnedDate', 'header' => 'Book Expected Returned Date'),
-        array('name' => 'bookReturnedDate', 'header' => 'Book Returned Date'),
-        array('name' => 'bookFine', 'header' => 'Book Fine'),
-    ),
-));
+    'dataProvider' => $displayFine,
+    'template'     => '{items}',
+    'columns'      => [
+        ['name' => 'id', 'header' => 'Book No.'],
+        ['name' => 'bookTitle', 'header' => 'Book Title'],
+        ['name' => 'bookExpectedReturnedDate', 'header' => 'Book Expected Returned Date'],
+        ['name' => 'bookReturnedDate', 'header' => 'Book Returned Date'],
+        ['name' => 'bookFine', 'header' => 'Book Fine'],
+    ],
+]);
 ?>

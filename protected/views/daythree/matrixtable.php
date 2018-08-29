@@ -6,16 +6,16 @@ $this->pageTitle   = Yii::app()->name.' - Practice Ten';
 
 <table class="table table-bordered">
     <?php
-    foreach ($matrix as $mx) {
-        echo '<tr>'.implode($mx).'</tr>';
+    foreach ($matrix as $originalMatrix) {
+        echo '<tr>'.implode($originalMatrix).'</tr>';
     }
     ?>
 </table>
 <br>
 <table class="table table-bordered">
     <?php
-    foreach ($new_matrix as $rm) {
-        echo '<tr>'.implode($rm).'</tr>';
+    foreach ($newMatrix as $rotatedMatrix) {
+        echo '<tr>'.implode($rotatedMatrix).'</tr>';
     }
     ?>
 </table>

@@ -14,45 +14,45 @@
 
 <body style="background-color: #7aba7b">
 
-<?php $this->widget('bootstrap.widgets.TbNavbar', array(
+<?php $this->widget('bootstrap.widgets.TbNavbar', [
     'collapse' => true,
-    'items'    => array(
-        array(
+    'items'    => [
+        [
             'class' => 'bootstrap.widgets.TbMenu',
-            'items' => array(
-                array('label' => 'Home', 'url' => array('/site/index')),
-                array(
+            'items' => [
+                ['label' => 'Home', 'url' => ['/site/index']],
+                [
                     'label' => 'Day 1 Exercises',
-                    'items' => array(
-                        array('label' => 'Practice Exercise Instruction', 'url' => array('/dayone/about')),
-                        array('label' => 'Exercise 1', 'url' => array('/dayone/number')),
-                        array('label' => 'Exercise 2', 'url' => array('/dayone/summation')),
-                        array('label' => 'Exercise 3', 'url' => array('/dayone/nestedloop')),
-                        array('label' => 'Exercise 4', 'url' => array('/dayone/factorial')),
-                        array('label' => 'Exercise 5', 'url' => array('/dayone/fizzbuzz')),
-                    ),
-                ),
-                array(
+                    'items' => [
+                        ['label' => 'Practice Exercise Instruction', 'url' => ['/dayone/about']],
+                        ['label' => 'Exercise 1', 'url' => ['/dayone/number']],
+                        ['label' => 'Exercise 2', 'url' => ['/dayone/summation']],
+                        ['label' => 'Exercise 3', 'url' => ['/dayone/nestedloop']],
+                        ['label' => 'Exercise 4', 'url' => ['/dayone/factorial']],
+                        ['label' => 'Exercise 5', 'url' => ['/dayone/fizzbuzz']],
+                    ],
+                ],
+                [
                     'label' => 'Day 2 Exercises',
-                    'items' => array(
-                        array('label' => 'Practice Exercise Instruction', 'url' => array('/daytwo/about')),
-                        array('label' => 'Exercise 6', 'url' => array('/daytwo/bookfine')),
-                        array('label' => 'Exercise 7', 'url' => array('/daytwo/decentnumber')),
-                        array('label' => 'Exercise 8', 'url' => array('/daytwo/perfectsquare')),
-                    ),
-                ),
-                array(
+                    'items' => [
+                        ['label' => 'Practice Exercise Instruction', 'url' => ['/daytwo/about']],
+                        ['label' => 'Exercise 6', 'url' => ['/daytwo/bookfine']],
+                        ['label' => 'Exercise 7', 'url' => ['/daytwo/decentnumber']],
+                        ['label' => 'Exercise 8', 'url' => ['/daytwo/perfectsquare']],
+                    ],
+                ],
+                [
                     'label' => 'Day 3 Exercises',
-                    'items' => array(
-                        array('label' => 'Practice Exercise Instruction', 'url' => array('/daythree/about')),
-                        array('label' => 'Exercise 9', 'url' => array('/daythree/kaprekar')),
-                        array('label' => 'Exercise 10', 'url' => array('/daythree/matrix')),
-                    ),
-                ),
-            ),
-        ),
-    ),
-)); ?>
+                    'items' => [
+                        ['label' => 'Practice Exercise Instruction', 'url' => ['/daythree/about']],
+                        ['label' => 'Exercise 9', 'url' => ['/daythree/kaprekar']],
+                        ['label' => 'Exercise 10', 'url' => ['/daythree/matrix']],
+                    ],
+                ],
+            ],
+        ],
+    ],
+]); ?>
 
 <div class="container" id="page">
 
